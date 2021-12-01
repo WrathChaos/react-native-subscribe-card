@@ -5,6 +5,7 @@ import {
   StyleProp,
   ViewStyle,
   TouchableOpacity,
+  TextStyle,
 } from "react-native";
 /**
  * ? Local Imports
@@ -12,9 +13,30 @@ import {
 import styles from "./SubscribeCard.style";
 
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
+type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
 interface ISubscribeCardProps {
+  title: string;
+  description?: string;
+  currency: string;
+  descriptionPrice?: string | number;
+  price: string | number;
+  timePostfix: string;
+  isSelected?: boolean;
   style?: CustomStyleProp;
+  containerStyle?: CustomStyleProp;
+  selectedContainerStyle?: CustomStyleProp;
+  outerContainerStyle?: CustomStyleProp;
+  selectedOuterContainerStyle?: CustomStyleProp;
+  titleTextStyle?: CustomTextStyleProp;
+  descriptionTextStyle?: CustomTextStyleProp;
+  descriptionPriceTextStyle?: CustomTextStyleProp;
+  selectedDescriptionPriceTextStyle?: CustomTextStyleProp;
+  currencyTextStyle?: CustomTextStyleProp;
+  selectedCurrencyTextStyle?: CustomTextStyleProp;
+  priceTextStyle?: CustomTextStyleProp;
+  selectedPriceTextStyle?: CustomTextStyleProp;
+  timeTextStyle?: CustomTextStyleProp;
   TextComponent?: any;
   TouchableComponent?: any;
   onPress: () => void;
@@ -22,70 +44,84 @@ interface ISubscribeCardProps {
 
 const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   style,
+  title,
+  description,
+  currency,
+  price,
+  descriptionPrice,
+  timePostfix,
   onPress,
+  isSelected,
+  titleTextStyle,
+  containerStyle,
+  selectedContainerStyle,
+  outerContainerStyle,
+  selectedOuterContainerStyle,
+  descriptionTextStyle,
+  descriptionPriceTextStyle,
+  selectedDescriptionPriceTextStyle,
+  currencyTextStyle,
+  selectedCurrencyTextStyle,
+  priceTextStyle,
+  selectedPriceTextStyle,
+  timeTextStyle,
   TextComponent = Text,
   TouchableComponent = TouchableOpacity,
 }) => {
+  const _outerContainerStyle = isSelected
+    ? [styles.selectedOuterContainer, selectedOuterContainerStyle]
+    : [styles.outerContainer, outerContainerStyle];
+  const _containerStyle = isSelected
+    ? [styles.selectedContainer, selectedContainerStyle]
+    : [styles.container, containerStyle];
+  const _priceTextStyle = isSelected
+    ? [styles.selectedPriceTextStyle, selectedPriceTextStyle]
+    : [styles.priceTextStyle, priceTextStyle];
+  const _currencyTextStyle = isSelected
+    ? [styles.selectedCurrencyTextStyle, selectedCurrencyTextStyle]
+    : [styles.currencyTextStyle, currencyTextStyle];
+  const _descriptionPriceTextStyle = isSelected
+    ? [
+        styles.selectedDescriptionPriceTextStyle,
+        selectedDescriptionPriceTextStyle,
+      ]
+    : [styles.descriptionPriceTextStyle, descriptionPriceTextStyle];
+
+  const Content = () => (
+    <View>
+      <TextComponent style={[styles.titleTextStyle, titleTextStyle]}>
+        {title}
+      </TextComponent>
+      {description && (
+        <TextComponent
+          style={[styles.descriptionTextStyle, descriptionTextStyle]}
+        >
+          <TextComponent style={_descriptionPriceTextStyle}>
+            {descriptionPrice}
+          </TextComponent>
+          {description}
+        </TextComponent>
+      )}
+    </View>
+  );
+
+  const Price = () => (
+    <View style={styles.priceContainer}>
+      <TextComponent style={_currencyTextStyle}>{currency}</TextComponent>
+      <TextComponent style={_priceTextStyle}>{price}</TextComponent>
+      <TextComponent style={[styles.timeTextStyle, timeTextStyle]}>
+        {timePostfix}
+      </TextComponent>
+    </View>
+  );
+
   return (
-    <TouchableComponent onPress={onPress}>
-      <View style={styles.outerContainer}>
-        <View style={styles.container}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <View>
-              <TextComponent
-                style={{
-                  fontSize: 16,
-                  color: "#fff",
-                  fontWeight: "700",
-                  fontFamily: "Roboto",
-                }}
-              >
-                Unlimited plan
-              </TextComponent>
-              <TextComponent
-                style={{
-                  color: "#fff",
-                  marginTop: 5,
-                  fontSize: 13,
-                  fontFamily: "Roboto",
-                }}
-              >
-                $ 124 billed Unlimited plan
-              </TextComponent>
-            </View>
-            <View style={{ marginLeft: "auto", flexDirection: "row" }}>
-              <TextComponent
-                style={{
-                  marginTop: 8,
-                  color: "#fff",
-                  fontFamily: "Roboto",
-                  fontWeight: "bold",
-                }}
-              >
-                $
-              </TextComponent>
-              <TextComponent
-                style={{
-                  fontSize: 42,
-                  color: "#fff",
-                  fontWeight: "bold",
-                  fontFamily: "Roboto",
-                }}
-              >
-                8
-              </TextComponent>
-              <TextComponent
-                style={{
-                  color: "#fff",
-                  fontFamily: "Roboto",
-                  fontWeight: "500",
-                  marginTop: 24,
-                  left: 3,
-                }}
-              >
-                /mo
-              </TextComponent>
-            </View>
+    <TouchableComponent style={style} onPress={onPress}>
+      <View style={_outerContainerStyle}>
+        <View style={[_containerStyle, style]}>
+          <View style={styles.containerGlue}>
+            <Content />
+            <Price />
           </View>
         </View>
       </View>

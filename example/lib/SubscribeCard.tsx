@@ -19,14 +19,23 @@ interface ISubscribeCardProps {
   title: string;
   description?: string;
   currency: string;
+  descriptionPrice?: string | number;
   price: string | number;
   timePostfix: string;
   isSelected?: boolean;
   style?: CustomStyleProp;
+  containerStyle?: CustomStyleProp;
+  selectedContainerStyle?: CustomStyleProp;
+  outerContainerStyle?: CustomStyleProp;
+  selectedOuterContainerStyle?: CustomStyleProp;
   titleTextStyle?: CustomTextStyleProp;
   descriptionTextStyle?: CustomTextStyleProp;
+  descriptionPriceTextStyle?: CustomTextStyleProp;
+  selectedDescriptionPriceTextStyle?: CustomTextStyleProp;
   currencyTextStyle?: CustomTextStyleProp;
+  selectedCurrencyTextStyle?: CustomTextStyleProp;
   priceTextStyle?: CustomTextStyleProp;
+  selectedPriceTextStyle?: CustomTextStyleProp;
   timeTextStyle?: CustomTextStyleProp;
   TextComponent?: any;
   TouchableComponent?: any;
@@ -39,17 +48,45 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   description,
   currency,
   price,
+  descriptionPrice,
   timePostfix,
   onPress,
-  titleTextStyle,
   isSelected,
+  titleTextStyle,
+  containerStyle,
+  selectedContainerStyle,
+  outerContainerStyle,
+  selectedOuterContainerStyle,
   descriptionTextStyle,
+  descriptionPriceTextStyle,
+  selectedDescriptionPriceTextStyle,
   currencyTextStyle,
+  selectedCurrencyTextStyle,
   priceTextStyle,
+  selectedPriceTextStyle,
   timeTextStyle,
   TextComponent = Text,
   TouchableComponent = TouchableOpacity,
 }) => {
+  const _outerContainerStyle = isSelected
+    ? [styles.selectedOuterContainer, selectedOuterContainerStyle]
+    : [styles.outerContainer, outerContainerStyle];
+  const _containerStyle = isSelected
+    ? [styles.selectedContainer, selectedContainerStyle]
+    : [styles.container, containerStyle];
+  const _priceTextStyle = isSelected
+    ? [styles.selectedPriceTextStyle, selectedPriceTextStyle]
+    : [styles.priceTextStyle, priceTextStyle];
+  const _currencyTextStyle = isSelected
+    ? [styles.selectedCurrencyTextStyle, selectedCurrencyTextStyle]
+    : [styles.currencyTextStyle, currencyTextStyle];
+  const _descriptionPriceTextStyle = isSelected
+    ? [
+        styles.selectedDescriptionPriceTextStyle,
+        selectedDescriptionPriceTextStyle,
+      ]
+    : [styles.descriptionPriceTextStyle, descriptionPriceTextStyle];
+
   const Content = () => (
     <View>
       <TextComponent style={[styles.titleTextStyle, titleTextStyle]}>
@@ -59,6 +96,9 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
         <TextComponent
           style={[styles.descriptionTextStyle, descriptionTextStyle]}
         >
+          <TextComponent style={_descriptionPriceTextStyle}>
+            {descriptionPrice}
+          </TextComponent>
           {description}
         </TextComponent>
       )}
@@ -67,12 +107,8 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
 
   const Price = () => (
     <View style={styles.priceContainer}>
-      <TextComponent style={[styles.currencyTextStyle, currencyTextStyle]}>
-        {currency}
-      </TextComponent>
-      <TextComponent style={[styles.priceTextStyle, priceTextStyle]}>
-        {price}
-      </TextComponent>
+      <TextComponent style={_currencyTextStyle}>{currency}</TextComponent>
+      <TextComponent style={_priceTextStyle}>{price}</TextComponent>
       <TextComponent style={[styles.timeTextStyle, timeTextStyle]}>
         {timePostfix}
       </TextComponent>
@@ -80,9 +116,9 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   );
 
   return (
-    <TouchableComponent onPress={onPress}>
-      <View style={styles.outerContainer}>
-        <View style={[styles.container, style]}>
+    <TouchableComponent style={style} onPress={onPress}>
+      <View style={_outerContainerStyle}>
+        <View style={[_containerStyle, style]}>
           <View style={styles.containerGlue}>
             <Content />
             <Price />

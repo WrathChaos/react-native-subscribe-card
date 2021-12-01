@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { View, StatusBar, SafeAreaView } from "react-native";
 import SubscribeCard from "./lib/SubscribeCard";
 
 const App = () => {
@@ -12,14 +12,35 @@ const App = () => {
         justifyContent: "center",
       }}
     >
-      <SubscribeCard
-        title="Unlimited plan"
-        description="$ 124 billed Unlimited plan"
-        currency="$"
-        price={8}
-        timePostfix="/mo"
-        onPress={() => {}}
-      />
+      <StatusBar barStyle="light-content" />
+      <View style={{ height: "40%", justifyContent: "space-evenly" }}>
+        <SubscribeCard
+          title="Unlimited plan"
+          descriptionPrice="$124"
+          description=" billed Unlimited plan"
+          currency="$"
+          price={8}
+          timePostfix="/mo"
+          isSelected
+          onPress={() => {}}
+        />
+        <SubscribeCard
+          title="1 year plan"
+          descriptionPrice="$224"
+          description=" billed every year"
+          currency="$"
+          price={12}
+          timePostfix="/mo"
+          onPress={() => {}}
+        />
+        <SubscribeCard
+          title="Montlyh Plan"
+          currency="$"
+          price={19}
+          timePostfix="/mo"
+          onPress={() => {}}
+        />
+      </View>
     </SafeAreaView>
   );
 };
