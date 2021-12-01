@@ -13,7 +13,7 @@ const App = () => {
       }}
     >
       <StatusBar barStyle="light-content" />
-      <View style={{ height: "40%", justifyContent: "space-evenly" }}>
+      <View style={{ height: "45%", justifyContent: "space-evenly" }}>
         <SubscribeCard
           title="Unlimited plan"
           descriptionPrice="$124"
@@ -22,6 +22,7 @@ const App = () => {
           price={8}
           timePostfix="/mo"
           isSelected
+          discountText="Save 90%"
           onPress={() => {}}
         />
         <SubscribeCard

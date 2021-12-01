@@ -23,9 +23,11 @@ interface ISubscribeCardProps {
   price: string | number;
   timePostfix: string;
   isSelected?: boolean;
+  discountText?: string;
   style?: CustomStyleProp;
   containerStyle?: CustomStyleProp;
   selectedContainerStyle?: CustomStyleProp;
+  discountContainerStyle?: CustomStyleProp;
   outerContainerStyle?: CustomStyleProp;
   selectedOuterContainerStyle?: CustomStyleProp;
   titleTextStyle?: CustomTextStyleProp;
@@ -37,6 +39,7 @@ interface ISubscribeCardProps {
   priceTextStyle?: CustomTextStyleProp;
   selectedPriceTextStyle?: CustomTextStyleProp;
   timeTextStyle?: CustomTextStyleProp;
+  discountTextStyle?: CustomTextStyleProp;
   TextComponent?: any;
   TouchableComponent?: any;
   onPress: () => void;
@@ -53,8 +56,10 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   onPress,
   isSelected,
   titleTextStyle,
+  discountText,
   containerStyle,
   selectedContainerStyle,
+  discountContainerStyle,
   outerContainerStyle,
   selectedOuterContainerStyle,
   descriptionTextStyle,
@@ -65,6 +70,7 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   priceTextStyle,
   selectedPriceTextStyle,
   timeTextStyle,
+  discountTextStyle,
   TextComponent = Text,
   TouchableComponent = TouchableOpacity,
 }) => {
@@ -115,8 +121,18 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
     </View>
   );
 
+  const Discount = () =>
+    discountText ? (
+      <View style={[styles.discountContainer, discountContainerStyle]}>
+        <TextComponent style={[styles.discountTextStyle, discountTextStyle]}>
+          {discountText}
+        </TextComponent>
+      </View>
+    ) : null;
+
   return (
     <TouchableComponent style={style} onPress={onPress}>
+      <Discount />
       <View style={_outerContainerStyle}>
         <View style={[_containerStyle, style]}>
           <View style={styles.containerGlue}>

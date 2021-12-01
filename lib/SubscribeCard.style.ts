@@ -17,6 +17,8 @@ interface Style {
   timeTextStyle: TextStyle;
   selectedDescriptionPriceTextStyle: TextStyle;
   descriptionPriceTextStyle: TextStyle;
+  discountContainer: ViewStyle;
+  discountTextStyle: TextStyle;
 }
 
 export default StyleSheet.create<Style>({
@@ -116,5 +118,23 @@ export default StyleSheet.create<Style>({
     color: "#fff",
     fontFamily: "Roboto",
     fontWeight: "bold",
+  },
+  discountContainer: {
+    top: 12,
+    zIndex: 9,
+    width: 75,
+    height: 25,
+    marginRight: 24,
+    borderRadius: 8,
+    marginLeft: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  discountTextStyle: {
+    fontSize: 12,
+    color: "#805bfa",
+    fontWeight: "900",
+    fontFamily: "Roboto",
   },
 });
