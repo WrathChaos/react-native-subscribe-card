@@ -12,7 +12,14 @@ const App = () => {
         justifyContent: "center",
       }}
     >
-      <SubscribeCard onPress={() => {}} />
+      <SubscribeCard
+        title="Unlimited plan"
+        description="$ 124 billed Unlimited plan"
+        currency="$"
+        price={8}
+        timePostfix="/mo"
+        onPress={() => {}}
+      />
     </SafeAreaView>
   );
 };

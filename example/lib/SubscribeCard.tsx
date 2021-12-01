@@ -5,6 +5,7 @@ import {
   StyleProp,
   ViewStyle,
   TouchableOpacity,
+  TextStyle,
 } from "react-native";
 /**
  * ? Local Imports
@@ -12,9 +13,21 @@ import {
 import styles from "./SubscribeCard.style";
 
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
+type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
 interface ISubscribeCardProps {
+  title: string;
+  description?: string;
+  currency: string;
+  price: string | number;
+  timePostfix: string;
+  isSelected?: boolean;
   style?: CustomStyleProp;
+  titleTextStyle?: CustomTextStyleProp;
+  descriptionTextStyle?: CustomTextStyleProp;
+  currencyTextStyle?: CustomTextStyleProp;
+  priceTextStyle?: CustomTextStyleProp;
+  timeTextStyle?: CustomTextStyleProp;
   TextComponent?: any;
   TouchableComponent?: any;
   onPress: () => void;
@@ -22,70 +35,57 @@ interface ISubscribeCardProps {
 
 const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   style,
+  title,
+  description,
+  currency,
+  price,
+  timePostfix,
   onPress,
+  titleTextStyle,
+  isSelected,
+  descriptionTextStyle,
+  currencyTextStyle,
+  priceTextStyle,
+  timeTextStyle,
   TextComponent = Text,
   TouchableComponent = TouchableOpacity,
 }) => {
+  const Content = () => (
+    <View>
+      <TextComponent style={[styles.titleTextStyle, titleTextStyle]}>
+        {title}
+      </TextComponent>
+      {description && (
+        <TextComponent
+          style={[styles.descriptionTextStyle, descriptionTextStyle]}
+        >
+          {description}
+        </TextComponent>
+      )}
+    </View>
+  );
+
+  const Price = () => (
+    <View style={styles.priceContainer}>
+      <TextComponent style={[styles.currencyTextStyle, currencyTextStyle]}>
+        {currency}
+      </TextComponent>
+      <TextComponent style={[styles.priceTextStyle, priceTextStyle]}>
+        {price}
+      </TextComponent>
+      <TextComponent style={[styles.timeTextStyle, timeTextStyle]}>
+        {timePostfix}
+      </TextComponent>
+    </View>
+  );
+
   return (
     <TouchableComponent onPress={onPress}>
       <View style={styles.outerContainer}>
-        <View style={styles.container}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <View>
-              <TextComponent
-                style={{
-                  fontSize: 16,
-                  color: "#fff",
-                  fontWeight: "700",
-                  fontFamily: "Roboto",
-                }}
-              >
-                Unlimited plan
-              </TextComponent>
-              <TextComponent
-                style={{
-                  color: "#fff",
-                  marginTop: 5,
-                  fontSize: 13,
-                  fontFamily: "Roboto",
-                }}
-              >
-                $ 124 billed Unlimited plan
-              </TextComponent>
-            </View>
-            <View style={{ marginLeft: "auto", flexDirection: "row" }}>
-              <TextComponent
-                style={{
-                  marginTop: 8,
-                  color: "#fff",
-                  fontFamily: "Roboto",
-                  fontWeight: "bold",
-                }}
-              >
-                $
-              </TextComponent>
-              <TextComponent
-                style={{
-                  fontSize: 42,
-                  color: "#fff",
-                  fontWeight: "bold",
-                  fontFamily: "Roboto",
-                }}
-              >
-                8
-              </TextComponent>
-              <TextComponent
-                style={{
-                  color: "#fff",
-                  fontFamily: "Roboto",
-                  fontWeight: "500",
-                  marginTop: 24,
-                  left: 3,
-                }}
-              >
-                /mo
-              </TextComponent>
-            </View>
+        <View style={[styles.container, style]}>
+          <View style={styles.containerGlue}>
+            <Content />
+            <Price />
           </View>
         </View>
       </View>
