@@ -1,6 +1,6 @@
 {
   "name": "react-native-subscribe-card",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Beautifully designed & fully customizable subscribe card for React Native",
   "main": "./build/dist/SubscribeCard.js",
   "repository": "git@github.com:WrathChaos/react-native-subscribe-card.git",

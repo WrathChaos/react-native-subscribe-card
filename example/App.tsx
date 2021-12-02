@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import SubscribeCard from "./lib/SubscribeCard";
+import SubscribeCard from "react-native-subscribe-card";
 
 const { width: ScreenWidth } = Dimensions.get("screen");
 

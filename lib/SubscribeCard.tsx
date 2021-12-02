@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import styles from "./SubscribeCard.style";
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
 type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
 
-interface ISubscribeCardProps {
+export interface ISubscribeCardProps {
   title: string;
   description?: string;
   currency: string;
