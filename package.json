@@ -1,14 +1,17 @@
 {
-  "name": "react-native-typescript-library-starter",
-  "version": "1.1.1",
-  "description": "Extremely easy to create a React Native Component Library with both Stateful and Functional Component Examples.",
-  "main": "./build/dist/index.js",
-  "repository": "git@github.com:WrathChaos/react-native-typescript-library-starter.git",
+  "name": "react-native-subscribe-card",
+  "version": "0.1.0",
+  "description": "Beautifully designed & fully customizable subscribe card for React Native",
+  "main": "./build/dist/SubscribeCard.js",
+  "repository": "git@github.com:WrathChaos/react-native-subscribe-card.git",
   "author": "FreakyCoder <kurayogun@gmail.com>",
   "license": "MIT",
   "homepage": "https://www.freakycoder.com",
-  "bugs": "https://github.com/WrathChaos/react-native-typescript-library-starter/issues",
+  "bugs": "https://github.com/WrathChaos/react-native-subscribe-card/issues",
   "keywords": [
+    "subscribe-card",
+    "card",
+    "subscribe",
     "FreakyCoder",
     "freakycoder",
     "kuray",
@@ -19,10 +22,7 @@
     "ui-lib",
     "rn"
   ],
-  "peerDependencies": {
-    "react": ">= 16.x.x",
-    "react-native": ">=0.63.x"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
