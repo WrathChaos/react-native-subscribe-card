@@ -152,6 +152,10 @@ should work of the example project.
 - [x] ~~LICENSE~~
 - [ ] Write an article about the lib on Medium
 
+## Credits
+
+Big thanks to Maxim Sirotyuk. Heavily inspired by [Maxim Sirotyuk's Amazing Design](https://www.uplabs.com/posts/subscription-winner-screens-android)
+
 ## Author
 
 FreakyCoder, kurayogun@gmail.com
