@@ -1,71 +1,100 @@
-<img alt="React Native Typescript Library Starter" src="assets/logo.png" width="1050"/>
+<img alt="React Native Subsribe Card" src="assets/logo.png" width="1050"/>
 
-[![Battle Tested ✅](https://img.shields.io/badge/-Battle--Tested%20%E2%9C%85-03666e?style=for-the-badge)](https://github.com/WrathChaos/react-native-typescript-library-starter)
+[![React Native Subsribe Card](https://img.shields.io/badge/-Extremely%20easy%20to%20create%20a%20React%20Native%20Component%20Library%20with%20both%20Stateful%20and%20Functional%20Component%20Examples-orange?style=for-the-badge)](https://github.com/WrathChaos/react-native-subscribe-card)
 
-[![React Native Typescript Library Starter](https://img.shields.io/badge/-Extremely%20easy%20to%20create%20a%20React%20Native%20Component%20Library%20with%20both%20Stateful%20and%20Functional%20Component%20Examples-orange?style=for-the-badge)](https://github.com/WrathChaos/react-native-typescript-library-starter)
-
-[![npm version](https://img.shields.io/npm/v/react-native-typescript-library-starter.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-typescript-library-starter)
-[![npm](https://img.shields.io/npm/dt/react-native-typescript-library-starter.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-typescript-library-starter)
+[![npm version](https://img.shields.io/npm/v/react-native-subscribe-card.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-subscribe-card)
+[![npm](https://img.shields.io/npm/dt/react-native-subscribe-card.svg?style=for-the-badge)](https://www.npmjs.com/package/react-native-subscribe-card)
 ![Platform - Android and iOS](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg?style=for-the-badge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
 
 <p align="center">
-  <img alt="React Native Typescript Library Starter"
-        src="assets/Screenshots/typescript.jpg" />
+  <img alt="React Native Subsribe Card"
+        src="assets/Screenshots/react-native-subscibe-card.png" />
 </p>
-
-## Library Usage
-
-- `npm i`
-- Delete example folder
-- Delete build folder
-- Make your own library into the `lib` folder
-- Change package.json
-- Change README for your own documentation
-- `npm run build`
-
-```
-> react-native-typescript-library-starter@0.1.0 build /Users/kuray/Coursion/MyLibraries/ReactNative/react-native-typescript-library-starter
-> cd lib && tsc && cp ../package.json ../build/dist/ && Echo Build completed!
-
-Build completed!
-```
-
-- Test your build/dist into the new project
-- Finally, time to npm publish :)
-
-### Below part is for Documentation ! Remove above Library Usage
 
 # Installation
 
 Add the dependency:
 
 ```bash
-npm i react-native-typescript-library-starter
+npm i react-native-subscribe-card
 ```
 
 ## Peer Dependencies
 
-<h5><i>IMPORTANT! You need install them</i></h5>
-
-```js
-"react": ">= 16.x.x",
-"react-native": ">= 0.55.x",
-```
+Zero Dependency
 
 # Usage
 
 ## Import
 
 ```jsx
-import MyComponent from "react-native-typescript-library-starter";
+import SubscribeCard from "react-native-subscribe-card";
 ```
 
 ## Fundamental Usage
 
+<p align="left">
+  <img alt="React Native Subsribe Card"
+        src="assets/Screenshots/react-native-subscibe-normal-card.png" />
+</p>
+
 ```jsx
-<MyComponent />
+<SubscribeCard
+  title="1 year plan"
+  descriptionPrice="$224"
+  description=" billed every year"
+  currency="$"
+  price={12}
+  timePostfix="/mo"
+  onPress={() => {}}
+/>
+```
+
+## Selected Customization Usage
+
+`isSelected` prop makes the whole subscribe card changes to a new selected one.
+
+<p align="left">
+  <img alt="React Native Subsribe Card"
+        src="assets/Screenshots/react-native-subscribe-selected-card.png" />
+</p>
+
+```jsx
+<SubscribeCard
+  isSelected
+  title="Unlimited plan"
+  descriptionPrice="$124"
+  description=" billed Unlimited plan"
+  currency="$"
+  price={8}
+  timePostfix="/mo"
+  onPress={() => {}}
+/>
+```
+
+## Discount / Save Optional Usage
+
+`discountText` prop makes the available for the discount/save optional component.
+
+<p align="left">
+  <img alt="React Native Subsribe Card"
+        src="assets/Screenshots/react-native-subscribe-selected-card.png" />
+</p>
+
+```jsx
+<SubscribeCard
+  discountText="Save 90%"
+  title="Unlimited plan"
+  descriptionPrice="$124"
+  description=" billed Unlimited plan"
+  currency="$"
+  price={8}
+  timePostfix="/mo"
+  isSelected
+  onPress={() => {}}
+/>
 ```
 
 ## Example Project 😍
@@ -83,30 +112,45 @@ should work of the example project.
 
 ## Fundamentals
 
-| Property    |  Type  |  Default  | Description           |
-| ----------- | :----: | :-------: | --------------------- |
-| title       | string | undefined | change the title      |
-| description | string | undefined | change the descrition |
+| Property         |      Type       | Required |  Default  | Description                                                        |
+| ---------------- | :-------------: | :------: | :-------: | ------------------------------------------------------------------ |
+| title            |     string      |    ✅    | undefined | change the title                                                   |
+| description      |     string      |    ❌    | undefined | change the descrition                                              |
+| descriptionPrice | string / number |    ❌    | undefined | change the descrition price                                        |
+| price            | string / number |    ✅    | undefined | change the price                                                   |
+| currency         |     string      |    ✅    | undefined | change the currency icon such as `$`                               |
+| timePostfix      |     string      |    ✅    | undefined | change the time postfix                                            |
+| isSelected       |     boolean     |    ❌    |   false   | enable the selected styling                                        |
+| discountText     |     string      |    ❌    | undefined | change the discount text                                           |
+| onPress          |    function     |    ✅    | undefined | set your own logic for the button functionality when it is pressed |
 
 ## Customization (Optionals)
 
-| Property       |   Type    |  Default  | Description                                                            |
-| -------------- | :-------: | :-------: | ---------------------------------------------------------------------- |
-| enableButton   |  boolean  |   false   | let you enable the button (must use it for button)                     |
-| onPress        | function  | undefined | set your own logic for the button functionality when it is pressed     |
-| buttonText     |  string   | undefined | change the button's text                                               |
-| style          | ViewStyle |  default  | set or override the style object for the main container                |
-| buttonStyle    | ViewStyle |  default  | set or override the style object for the button style                  |
-| ImageComponent |   Image   |  default  | set your own component instead of default react-native Image component |
+| Property                          |       Type       | Default | Description                                                                                                             |
+| --------------------------------- | :--------------: | :-----: | ----------------------------------------------------------------------------------------------------------------------- |
+| style                             |    ViewStyle     | default | set or override the style object for the styling                                                                        |
+| containerStyle                    |    ViewStyle     | default | set or override the style object for the `container` style                                                              |
+| selectedContainerStyle            |    ViewStyle     | default | set or override the style object for the `selected container` style (when the `isSelected` prop is enable)              |
+| discountContainerStyle            |    ViewStyle     | default | set or override the style object for the `discount container` style                                                     |
+| outerContainerStyle               |    ViewStyle     | default | set or override the style object for the `outer container` style                                                        |
+| selectedOuterContainerStyle       |    ViewStyle     | default | set or override the style object for the `selected outer container` style (when the `isSelected` prop is enable)        |
+| titleTextStyle                    |    TextStyle     | default | set or override the style object for the `title` text style                                                             |
+| descriptionTextStyle              |    TextStyle     | default | set or override the style object for the `description` text style                                                       |
+| descriptionPriceTextStyle         |    TextStyle     | default | set or override the style object for the `description price` text style                                                 |
+| selectedDescriptionPriceTextStyle |    TextStyle     | default | set or override the style object for the `selected description price` text style (when the `isSelected` prop is enable) |
+| currencyTextStyle                 |    TextStyle     | default | set or override the style object for the `currency` text style                                                          |
+| selectedCurrencyTextStyle         |    TextStyle     | default | set or override the style object for the `selected currency` text style (when the `isSelected` prop is enable)          |
+| priceTextStyle                    |    TextStyle     | default | set or override the style object for the `price` text style                                                             |
+| selectedPriceTextStyle            |    TextStyle     | default | set or override the style object for the `selected price` text style (when the `isSelected` prop is enable)             |
+| timeTextStyle                     |    TextStyle     | default | set or override the style object for the `time` text style                                                              |
+| discountTextStyle                 |    TextStyle     | default | set or override the style object for the `discount` text style                                                          |
+| TextComponent                     |       Text       | default | set your own component instead of default `React Native's Text` component                                               |
+| TouchableComponent                | TouchableOpacity | default | set your own component instead of default `React Native's TouchableOpacity` component                                   |
 
 ## Future Plans
 
 - [x] ~~LICENSE~~
 - [ ] Write an article about the lib on Medium
-
-# Change Log
-
-Change log will be here !
 
 ## Author
 
@@ -114,4 +158,4 @@ FreakyCoder, kurayogun@gmail.com
 
 ## License
 
-React Native Typescript Library Starter is available under the MIT license. See the LICENSE file for more info.
+React Native Subsribe Card is available under the MIT license. See the LICENSE file for more info.
