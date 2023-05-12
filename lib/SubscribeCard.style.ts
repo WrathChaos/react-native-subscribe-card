@@ -66,13 +66,11 @@ export default StyleSheet.create<Style>({
     fontSize: 16,
     color: "#fff",
     fontWeight: "700",
-    fontFamily: "Roboto",
   },
   descriptionTextStyle: {
     color: "#fff",
     marginTop: 5,
     fontSize: 13,
-    fontFamily: "Roboto",
   },
   priceContainer: {
     marginLeft: "auto",
@@ -81,42 +79,35 @@ export default StyleSheet.create<Style>({
   currencyTextStyle: {
     marginTop: 8,
     color: "#805bfa",
-    fontFamily: "Roboto",
     fontWeight: "bold",
   },
   selectedCurrencyTextStyle: {
     marginTop: 8,
     color: "#fff",
-    fontFamily: "Roboto",
     fontWeight: "bold",
   },
   priceTextStyle: {
     fontSize: 36,
     color: "#805bfa",
     fontWeight: "bold",
-    fontFamily: "Roboto",
   },
   selectedPriceTextStyle: {
     fontSize: 36,
     color: "#fff",
     fontWeight: "bold",
-    fontFamily: "Roboto",
   },
   timeTextStyle: {
     color: "#fff",
-    fontFamily: "Roboto",
     fontWeight: "500",
     marginTop: 20,
     left: 3,
   },
   descriptionPriceTextStyle: {
     color: "#805bfa",
-    fontFamily: "Roboto",
     fontWeight: "bold",
   },
   selectedDescriptionPriceTextStyle: {
     color: "#fff",
-    fontFamily: "Roboto",
     fontWeight: "bold",
   },
   discountContainer: {
@@ -135,6 +126,5 @@ export default StyleSheet.create<Style>({
     fontSize: 12,
     color: "#805bfa",
     fontWeight: "900",
-    fontFamily: "Roboto",
   },
 });

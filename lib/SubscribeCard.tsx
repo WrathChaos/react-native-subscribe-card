@@ -12,34 +12,31 @@ import {
  */
 import styles from "./SubscribeCard.style";
 
-type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
-type CustomTextStyleProp = StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
-
 export interface ISubscribeCardProps {
   title: string;
+  price: string | number;
+  timePostfix: string;
   description?: string;
   currency: string;
   descriptionPrice?: string | number;
-  price: string | number;
-  timePostfix: string;
   isSelected?: boolean;
   discountText?: string;
-  style?: CustomStyleProp;
-  containerStyle?: CustomStyleProp;
-  selectedContainerStyle?: CustomStyleProp;
-  discountContainerStyle?: CustomStyleProp;
-  outerContainerStyle?: CustomStyleProp;
-  selectedOuterContainerStyle?: CustomStyleProp;
-  titleTextStyle?: CustomTextStyleProp;
-  descriptionTextStyle?: CustomTextStyleProp;
-  descriptionPriceTextStyle?: CustomTextStyleProp;
-  selectedDescriptionPriceTextStyle?: CustomTextStyleProp;
-  currencyTextStyle?: CustomTextStyleProp;
-  selectedCurrencyTextStyle?: CustomTextStyleProp;
-  priceTextStyle?: CustomTextStyleProp;
-  selectedPriceTextStyle?: CustomTextStyleProp;
-  timeTextStyle?: CustomTextStyleProp;
-  discountTextStyle?: CustomTextStyleProp;
+  style?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  selectedContainerStyle?: StyleProp<ViewStyle>;
+  discountContainerStyle?: StyleProp<ViewStyle>;
+  outerContainerStyle?: StyleProp<ViewStyle>;
+  selectedOuterContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  descriptionTextStyle?: StyleProp<TextStyle>;
+  descriptionPriceTextStyle?: StyleProp<TextStyle>;
+  selectedDescriptionPriceTextStyle?: StyleProp<TextStyle>;
+  currencyTextStyle?: StyleProp<TextStyle>;
+  selectedCurrencyTextStyle?: StyleProp<TextStyle>;
+  priceTextStyle?: StyleProp<TextStyle>;
+  selectedPriceTextStyle?: StyleProp<TextStyle>;
+  timeTextStyle?: StyleProp<TextStyle>;
+  discountTextStyle?: StyleProp<TextStyle>;
   TextComponent?: any;
   TouchableComponent?: any;
   onPress: () => void;
@@ -77,15 +74,19 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
   const _outerContainerStyle = isSelected
     ? [styles.selectedOuterContainer, selectedOuterContainerStyle]
     : [styles.outerContainer, outerContainerStyle];
+
   const _containerStyle = isSelected
     ? [styles.selectedContainer, selectedContainerStyle]
     : [styles.container, containerStyle];
+
   const _priceTextStyle = isSelected
     ? [styles.selectedPriceTextStyle, selectedPriceTextStyle]
     : [styles.priceTextStyle, priceTextStyle];
+
   const _currencyTextStyle = isSelected
     ? [styles.selectedCurrencyTextStyle, selectedCurrencyTextStyle]
     : [styles.currencyTextStyle, currencyTextStyle];
+
   const _descriptionPriceTextStyle = isSelected
     ? [
         styles.selectedDescriptionPriceTextStyle,
@@ -93,7 +94,7 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
       ]
     : [styles.descriptionPriceTextStyle, descriptionPriceTextStyle];
 
-  const Content = () => (
+  const renderContent = () => (
     <View>
       <TextComponent style={[styles.titleTextStyle, titleTextStyle]}>
         {title}
@@ -111,7 +112,7 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
     </View>
   );
 
-  const Price = () => (
+  const renderPrice = () => (
     <View style={styles.priceContainer}>
       <TextComponent style={_currencyTextStyle}>{currency}</TextComponent>
       <TextComponent style={_priceTextStyle}>{price}</TextComponent>
@@ -121,7 +122,7 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
     </View>
   );
 
-  const Discount = () =>
+  const renderDiscount = () =>
     discountText ? (
       <View style={[styles.discountContainer, discountContainerStyle]}>
         <TextComponent style={[styles.discountTextStyle, discountTextStyle]}>
@@ -130,17 +131,21 @@ const SubscribeCard: React.FC<ISubscribeCardProps> = ({
       </View>
     ) : null;
 
-  return (
-    <TouchableComponent style={style} onPress={onPress}>
-      <Discount />
-      <View style={_outerContainerStyle}>
-        <View style={[_containerStyle, style]}>
-          <View style={styles.containerGlue}>
-            <Content />
-            <Price />
-          </View>
+  const renderContainer = () => (
+    <View style={_outerContainerStyle}>
+      <View style={[_containerStyle, style]}>
+        <View style={styles.containerGlue}>
+          {renderContent()}
+          {renderPrice()}
         </View>
       </View>
+    </View>
+  );
+
+  return (
+    <TouchableComponent style={style} onPress={onPress}>
+      {renderDiscount()}
+      {renderContainer()}
     </TouchableComponent>
   );
 };
